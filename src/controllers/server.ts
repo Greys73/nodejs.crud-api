@@ -1,6 +1,8 @@
-import { ControllerResponse } from './../types/types';
 import { IncomingMessage, ServerResponse } from 'http';
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from './controllers';
+import { ControllerResponse } from './../types/types';
+import { ERROR_ENDPOINT } from './../utils/responses';
+import parseUserId from './../utils/parseUserId';
 
 const DEF_PATH = '/api/users';
 const CONTENT_TYPE = { 'Content-Type': 'application/json' };
@@ -10,14 +12,12 @@ export const serverController = async (
   response: ServerResponse,
 ) => {
   const { url, method } = request;
-  let respData: ControllerResponse = {
-    statusCode: 404,
-    content: { message: 'Non-existing endpoint!' },
-  };
+  let respData: ControllerResponse = ERROR_ENDPOINT;
 
   if (url?.startsWith(DEF_PATH)) {
-    const userId = url.replace(DEF_PATH, '');
-    if (userId) {
+    const endPoint = url.replace(DEF_PATH, '')
+    const userId = parseUserId(endPoint);
+    if(userId) {
       switch (method) {
         case 'GET':
           respData = getUser(userId);
@@ -31,7 +31,7 @@ export const serverController = async (
         default:
           break;
       }
-    } else {
+    } else if(endPoint.length === 0 || endPoint === '/') {
       switch (method) {
         case 'GET':
           respData = getAllUsers();
@@ -39,7 +39,6 @@ export const serverController = async (
         case 'POST':
           respData = (await createUser(request)) as ControllerResponse;
           break;
-
         default:
           break;
       }

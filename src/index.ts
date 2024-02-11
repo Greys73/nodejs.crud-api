@@ -1,7 +1,8 @@
-import { serverController } from './controllers/server';
+import 'dotenv/config';
 import { createServer } from 'http';
+import { serverController } from './controllers/server';
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 const server = createServer(serverController);
 

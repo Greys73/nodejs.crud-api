@@ -6,7 +6,8 @@ export const isValidUser = (obj: TUser & object) => {
   const isCorrect =
     typeof obj.username === 'string' &&
     typeof obj.age === 'number' &&
-    Array.isArray(obj.hobbies);
+    Array.isArray(obj.hobbies)&&
+    obj.hobbies.every((item) => typeof item === 'string');
 
   return isCorrect;
 };

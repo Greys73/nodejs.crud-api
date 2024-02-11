@@ -7,7 +7,7 @@ export const SUCSESS: ControllerResponse = {
 
 export const ERROR_FIELDS: ControllerResponse = {
   statusCode: 400,
-  content: { message: 'Request body does not contain required fields' },
+  content: { message: 'Request body contains errors' },
 };
 
 export const ERROR_UUID: ControllerResponse = {
@@ -23,4 +23,9 @@ export const ERROR_JSON: ControllerResponse = {
 export const USER_NOT_FOUND: ControllerResponse = {
   statusCode: 404,
   content: { message: 'User not found' },
+};
+
+export const ERROR_ENDPOINT: ControllerResponse = {
+  statusCode: 404,
+  content: { message: 'Non-existing endpoint' },
 };
