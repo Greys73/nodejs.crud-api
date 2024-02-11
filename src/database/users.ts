@@ -17,7 +17,8 @@ class UsersDB {
     this.users.splice(index, 1);
   }
 
-  addUser = (username: string, age: number, hobbies: string[]) => {
+  addUser = (_user: TUser) => {
+    const {username, age, hobbies} = _user;
     const id = uuid();
     const user: TUser = { id, username, age, hobbies };
     this.users.push(user);
