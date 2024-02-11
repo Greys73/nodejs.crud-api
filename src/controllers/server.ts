@@ -1,5 +1,11 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { createUser, deleteUser, getAllUsers, getUser, updateUser } from './controllers';
+import {
+  createUser,
+  deleteUser,
+  getAllUsers,
+  getUser,
+  updateUser,
+} from './controllers';
 import { ControllerResponse } from './../types/types';
 import { ERROR_ENDPOINT } from './../utils/responses';
 import parseUserId from './../utils/parseUserId';
@@ -15,9 +21,9 @@ export const serverController = async (
   let respData: ControllerResponse = ERROR_ENDPOINT;
 
   if (url?.startsWith(DEF_PATH)) {
-    const endPoint = url.replace(DEF_PATH, '')
+    const endPoint = url.replace(DEF_PATH, '');
     const userId = parseUserId(endPoint);
-    if(userId) {
+    if (userId) {
       switch (method) {
         case 'GET':
           respData = getUser(userId);
@@ -31,7 +37,7 @@ export const serverController = async (
         default:
           break;
       }
-    } else if(endPoint.length === 0 || endPoint === '/') {
+    } else if (endPoint.length === 0 || endPoint === '/') {
       switch (method) {
         case 'GET':
           respData = getAllUsers();

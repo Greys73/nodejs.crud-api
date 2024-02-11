@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { TUser, TUsers } from 'types/types';
+import { TUser, TUsers } from './../types/types';
 
 class UsersDB {
   users: TUsers;
@@ -27,7 +27,7 @@ class UsersDB {
 
   updateUser = (_user: TUser) => {
     const { id, username, age, hobbies } = _user;
-    let user = this.getUser(id!);
+    const user = this.getUser(id!);
     if (user) {
       user.username = username;
       user.age = age;

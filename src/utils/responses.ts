@@ -1,4 +1,4 @@
-import { ControllerResponse } from 'types/types';
+import { ControllerResponse } from './../types/types';
 
 export const SUCSESS: ControllerResponse = {
   statusCode: 204,
