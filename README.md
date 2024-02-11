@@ -1,4 +1,4 @@
-### Simple CRUD API using in-memory database underneath
+### Simple CRUD API using in-memory database
 
 ## Prepare
 Clone repo
