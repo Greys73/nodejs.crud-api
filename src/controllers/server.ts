@@ -1,33 +1,29 @@
 import { ControllerResponse } from './../types/types';
 import { IncomingMessage, ServerResponse } from 'http';
-import { createUser, getAllUsers, getUser } from './controllers';
-// import users from '../database/users';
+import { createUser, getAllUsers, getUser, updateUser } from './controllers';
 
 const DEF_PATH = '/api/users';
 const CONTENT_TYPE = { 'Content-Type': 'application/json' };
 
-export const serverController = async (request: IncomingMessage, response: ServerResponse) => {
+export const serverController = async (
+  request: IncomingMessage,
+  response: ServerResponse,
+) => {
   const { url, method } = request;
   let respData: ControllerResponse = {
     statusCode: 404,
     content: { message: 'Non-existing endpoint!' },
-  }
-
-  // users.addUser({ username: 'Vasya', age: 25 ,hobbies: [] });
-  // users.addUser({ username: 'Nina', age: 25 ,hobbies: [] });
+  };
 
   if (url?.startsWith(DEF_PATH)) {
-    const userId = url.replace(DEF_PATH,'');
+    const userId = url.replace(DEF_PATH, '');
     if (userId) {
       switch (method) {
         case 'GET':
           respData = getUser(userId);
           break;
-        case 'POST':
-          respData = getUser(userId);
-          break;
         case 'PUT':
-          respData = getUser(userId);
+          respData = (await updateUser(userId, request)) as ControllerResponse;
           break;
         case 'DELETE':
           respData = getUser(userId);
@@ -41,9 +37,9 @@ export const serverController = async (request: IncomingMessage, response: Serve
           respData = getAllUsers();
           break;
         case 'POST':
-          respData = await createUser(request) as ControllerResponse;
+          respData = (await createUser(request)) as ControllerResponse;
           break;
-      
+
         default:
           break;
       }

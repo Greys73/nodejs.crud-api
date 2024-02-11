@@ -1,5 +1,5 @@
-import users from "./../database/users";
-import { ControllerResponse } from "types/types";
+import users from './../database/users';
+import { ControllerResponse } from 'types/types';
 
 const getAllUsers = (): ControllerResponse => {
   const result = {
@@ -7,5 +7,5 @@ const getAllUsers = (): ControllerResponse => {
     content: { data: users.getUsers() },
   };
   return result;
-}
+};
 export default getAllUsers;

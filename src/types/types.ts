@@ -3,16 +3,16 @@ export type TUser = {
   username: string;
   age: number;
   hobbies: string[];
-}
+};
 
 export type TUsers = TUser[];
 
 export type TContent = {
-  data?: TUser | TUsers,
-  message?: string,
+  data?: TUser | TUsers;
+  message?: string;
 };
 
 export type ControllerResponse = {
-  statusCode: number,
-  content: TContent,
+  statusCode: number;
+  content: TContent;
 };
