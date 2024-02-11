@@ -15,6 +15,7 @@ const updateUser = (id: string, req: IncomingMessage) => {
     return new Promise((resolve) => {
       resolve(ERROR_UUID);
     });
+
   return new Promise((resolve) => {
     let body = '';
     req.on('data', (chunk) => {

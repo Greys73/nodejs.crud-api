@@ -1,5 +1,10 @@
 import { ControllerResponse } from 'types/types';
 
+export const SUCSESS: ControllerResponse = {
+  statusCode: 204,
+  content: { message: 'Record is found and deleted' },
+};
+
 export const ERROR_FIELDS: ControllerResponse = {
   statusCode: 400,
   content: { message: 'Request body does not contain required fields' },

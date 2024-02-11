@@ -1,6 +1,6 @@
 import { ControllerResponse } from './../types/types';
 import { IncomingMessage, ServerResponse } from 'http';
-import { createUser, getAllUsers, getUser, updateUser } from './controllers';
+import { createUser, deleteUser, getAllUsers, getUser, updateUser } from './controllers';
 
 const DEF_PATH = '/api/users';
 const CONTENT_TYPE = { 'Content-Type': 'application/json' };
@@ -26,7 +26,7 @@ export const serverController = async (
           respData = (await updateUser(userId, request)) as ControllerResponse;
           break;
         case 'DELETE':
-          respData = getUser(userId);
+          respData = deleteUser(userId);
           break;
         default:
           break;
