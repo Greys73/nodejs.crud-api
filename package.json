@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start:dev": "nodemon src/index.ts",
+    "start:multi": "nodemon src/cluster/cluster.ts",
     "start:prod": "tsc && node dist/index.js",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
