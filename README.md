@@ -20,6 +20,7 @@ PORT=3000
 Start server
 ```bash
 npm run start:dev # Development mode
+npm run start:multi # Multiple instances mode
 npm run start:prod # Production mode
 ```
 ## Usage
